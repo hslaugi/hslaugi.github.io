@@ -843,96 +843,6 @@
   }
 
 
-  /* ── Expandable research image ───────────────── */
-  .research-figure.expandable {
-    position: relative;
-    cursor: zoom-in;
-  }
-  .research-figure.expandable::after {
-    content: '⤢  Enlarge';
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    padding: 5px 8px;
-    border-radius: 4px;
-    background: rgba(11,19,34,.86);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .02em;
-    opacity: 0;
-    transform: translateY(3px);
-    transition: opacity .15s ease, transform .15s ease;
-    pointer-events: none;
-  }
-  .research-figure.expandable:hover::after,
-  .research-figure.expandable:focus-visible::after {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .research-figure.expandable:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-  .image-modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    background: rgba(3,8,16,.94);
-    align-items: center;
-    justify-content: center;
-    padding: 28px;
-  }
-  .image-modal-overlay.open { display: flex; }
-  .image-modal-dialog {
-    position: relative;
-    width: min(96vw, 1500px);
-    height: min(92vh, 1000px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .image-modal-dialog img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 24px 80px rgba(0,0,0,.5);
-    background: #fff;
-  }
-  .image-modal-close {
-    position: fixed;
-    top: 18px;
-    right: 22px;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.28);
-    background: rgba(17,32,53,.9);
-    color: #fff;
-    font: 600 22px/1 'Plus Jakarta Sans', sans-serif;
-    cursor: pointer;
-  }
-  .image-modal-close:hover { background: rgba(90,174,224,.95); }
-  .image-modal-caption {
-    position: fixed;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,.82);
-    font-size: 12px;
-    text-align: center;
-    width: min(90vw, 900px);
-  }
-  @media (max-width: 760px) {
-    .image-modal-overlay { padding: 18px; }
-    .research-figure.expandable::after { opacity: 1; }
-  }
-
-
 
   /* ── Final refinements ───────────────────────── */
   .news-text { font-size: 14.5px; line-height: 1.6; }
@@ -969,33 +879,6 @@
     color: var(--accent) !important;
     font-style: normal !important;
     font-weight: 700 !important;
-  }
-  .research-figure.expandable { position: relative; }
-  .image-maximize-btn {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 4;
-    border: 1px solid rgba(255,255,255,.75);
-    background: rgba(11,19,34,.82);
-    color: #fff;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .03em;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0,0,0,.28);
-    opacity: .94;
-    transition: background .15s, transform .15s, opacity .15s;
-  }
-  .research-figure.expandable:hover .image-maximize-btn,
-  .image-maximize-btn:focus-visible {
-    background: var(--accent);
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.03);
   }
   .award-grid {
     display: grid;
@@ -1063,14 +946,6 @@
 </div>
 <div class="modal-body" id="modalBody"></div>
 </div>
-</div>
-<!-- Full-screen research image viewer -->
-<div aria-hidden="true" aria-label="Expanded research figure" aria-modal="true" class="image-modal-overlay" id="imageModal" role="dialog">
-<button aria-label="Close expanded image" class="image-modal-close" id="imageModalClose">×</button>
-<div class="image-modal-dialog">
-<img alt="" id="imageModalImg" src=""/>
-</div>
-<div class="image-modal-caption" id="imageModalCaption"></div>
 </div>
 <div class="layout">
 <!-- ══ SIDEBAR ══════════════════════════════════ -->
@@ -1150,7 +1025,7 @@
 <!-- ── News ──────────────────────────────────── -->
 <section class="section" id="news">
 <h2 class="section-label">News</h2>
-<h3 class="news-subheading">Featured News</h3><div class="featured-news-card"><a class="featured-news-link" href="https://www.uta.edu/news/news-releases/2024/09/11/health-informatics-training-takes-center-stage-at-uta" rel="noopener" target="_blank">Health informatics training takes center stage at UTA</a><p>UTA News · September 2024 — feature highlighting my TExBioMed research presentation and participation in the Texas Health Informatics Alliance conference.</p></div><h3 class="news-subheading" style="margin-top:22px;">Recent Updates</h3><div aria-label="Recent news; scroll for earlier items" class="news news-scroll">
+<h3 class="news-subheading">Recent Updates</h3><div aria-label="Recent news; scroll for earlier items" class="news news-scroll">
 <div class="news-row">
 <span class="news-date">Sep 2026</span>
 <span class="news-text">Accepted for a <strong>poster presentation</strong> at the <a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" rel="noopener" target="_blank">UT Systemwide Brain Research Summit 2026</a>, to be held Nov. 5–6 in Austin, TX.</span>
@@ -1189,6 +1064,8 @@
 </div>
 </div>
 <p class="news-hint">Scroll within this section for earlier updates.</p>
+<h3 class="news-subheading" style="margin-top:24px;">Featured News</h3>
+<div class="featured-news-card"><a class="featured-news-link" href="https://www.uta.edu/news/news-releases/2024/09/11/health-informatics-training-takes-center-stage-at-uta" rel="noopener" target="_blank">Health informatics training takes center stage at UTA</a><p>UTA News · September 2024 — feature highlighting my TExBioMed research presentation and participation in the Texas Health Informatics Alliance conference.</p></div>
 </section>
 <!-- ── Publications ───────────────────────────── -->
 <section class="section" id="publications">
@@ -1268,7 +1145,7 @@
 <h2 class="section-label">Research Experience</h2>
 
 <div class="exp-list journey-exp-list">
-<article class="journey-with-figure">
+<article>
 <div>
 <div class="exp-header">
 <span class="exp-role">Undergraduate Research Assistant</span>
@@ -1441,51 +1318,6 @@
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  // Full-screen viewer for the BRAIN Lab project schematic
-  const imageModal = document.getElementById('imageModal');
-  const imageModalImg = document.getElementById('imageModalImg');
-  const imageModalCaption = document.getElementById('imageModalCaption');
-  const imageModalClose = document.getElementById('imageModalClose');
-  const expandableFigure = document.querySelector('[data-expand-image]');
-
-  function openImageModal() {
-    if (!expandableFigure) return;
-    const img = expandableFigure.querySelector('img');
-    if (!img || img.style.display === 'none') return;
-    imageModalImg.src = img.src;
-    imageModalImg.alt = img.alt;
-    imageModalCaption.textContent = img.alt;
-    imageModal.classList.add('open');
-    imageModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    imageModalClose.focus();
-  }
-
-  function closeImageModal() {
-    imageModal.classList.remove('open');
-    imageModal.setAttribute('aria-hidden', 'true');
-    imageModalImg.src = '';
-    document.body.style.overflow = '';
-    if (expandableFigure) expandableFigure.focus();
-  }
-
-  if (expandableFigure) {
-    expandableFigure.addEventListener('click', openImageModal);
-    expandableFigure.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openImageModal();
-      }
-    });
-  }
-  imageModalClose.addEventListener('click', closeImageModal);
-  imageModal.addEventListener('click', e => {
-    if (e.target === imageModal) closeImageModal();
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && imageModal.classList.contains('open')) closeImageModal();
-  });
 
 </script>
 </body>
