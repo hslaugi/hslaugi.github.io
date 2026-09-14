@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hemshankar Laugi</title>
+  <meta name="description" content="Hemshankar Laugi — biomedical engineering researcher working across computational, quantitative, and experimental approaches to biology and medicine.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+
+  <style>
+  /* ── Design tokens ─────────────────────────── */
+  :root {
+    --ground:    #F0F4F8;
+    --surface:   #FFFFFF;
+    --ink:       #1D2840;
+    --ink-2:     #3A4A62;
+    --mid:       #6B7D97;
+    --border:    #D4DFE9;
+    --accent:    #1B5C8A;
+    --accent-h:  #144D76;
+    --warm:      #C96D40;
+    --purple:    #6B3FA0;
+    --green:     #1F7A50;
+    --r:         4px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #0B1322;
+      --surface:  #112035;
+      --ink:      #D4E6F5;
+      --ink-2:    #9AB5CF;
+      --mid:      #627FA0;
+      --border:   #1E3250;
+      --accent:   #5AAEE0;
+      --accent-h: #72C0F0;
+      --warm:     #E08A5A;
+      --purple:   #9B6FD0;
+      --green:    #3DB87A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #0B1322;
+    --surface:  #112035;
+    --ink:      #D4E6F5;
+    --ink-2:    #9AB5CF;
+    --mid:      #627FA0;
+    --border:   #1E3250;
+    --accent:   #5AAEE0;
+    --accent-h: #72C0F0;
+    --warm:     #E08A5A;
+    --purple:   #9B6FD0;
+    --green:    #3DB87A;
+  }
+
+  /* ── Reset ──────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--ground);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color .15s; }
+  a:hover { color: var(--accent-h); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  /* ── Layout ─────────────────────────────────── */
+  .layout {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 52px 28px;
+    gap: 64px;
+  }
+
+  /* ══ SIDEBAR ═════════════════════════════════ */
+  .sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 40px;
+    align-self: flex-start;
+  }
+
+  /* Avatar — swap initials for <img> when you have a photo */
+  .avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: linear-gradient(150deg, var(--accent) 0%, #0D3D62 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 4.5px var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .avatar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 55% 25%, rgba(255,255,255,.15) 0%, transparent 65%);
+  }
+  /* To use a real photo: <div class="avatar"><img src="photo.jpg" alt="Hemshankar Laugi"></div> */
+  .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 1; }
+  .avatar-initials {
+    font-family: 'Cormorant', Georgia, serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: rgba(255,255,255,.92);
+    position: relative;
+    z-index: 1;
+  }
+
+  .sb-name {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .sb-role {
+    font-size: 13.5px;
+    color: var(--mid);
+    line-height: 1.55;
+    margin-bottom: 5px;
+  }
+  .sb-gpa {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  /* Link pills */
+  .sb-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+  .sb-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--mid);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 3px 9px;
+    border-radius: 3px;
+    transition: color .15s, border-color .15s;
+  }
+  .sb-pill:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+  .sb-pill svg { flex-shrink: 0; }
+
+  /* Nav */
+  .sb-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 16px; }
+  .sb-nav { display: flex; flex-direction: column; gap: 1px; }
+  .sb-nav a {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding: 4px 0;
+    transition: color .15s;
+  }
+  .sb-nav a:hover { color: var(--accent); text-decoration: none; }
+
+  /* ══ MAIN ════════════════════════════════════ */
+  .main { flex: 1; min-width: 0; max-width: 820px; }
+
+  /* Section */
+  .section { margin-bottom: 52px; }
+  .section-label {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    text-wrap: balance;
+  }
+
+  /* ── About ──────────────────────────────────── */
+  .about-paras { display: flex; flex-direction: column; gap: 12px; }
+  .about-paras p { color: var(--ink-2); font-size: 15.2px; max-width: 64ch; }
+  .about-paras p strong { color: var(--ink); font-weight: 600; }
+  .about-cta { display: flex; gap: 9px; margin-top: 14px; flex-wrap: wrap; }
+  .cta-btn {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    padding: 5px 14px;
+    border-radius: var(--r);
+    transition: background .15s, color .15s;
+  }
+  .cta-btn:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+  /* ── Metrics bar ─────────────────────────────── */
+  .metrics {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 52px;
+  }
+  .metric {
+    flex: 1;
+    text-align: center;
+    padding: 22px 10px;
+    border-right: 1px solid var(--border);
+  }
+  .metric:last-child { border-right: none; }
+  .metric-num {
+    display: block;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 40px;
+    font-weight: 650;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .metric-label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .065em;
+    text-transform: uppercase;
+    color: var(--mid);
+    line-height: 1.45;
+  }
+
+  /* ── News (Elinor-style: compact one-liners) ─── */
+  .news { display: flex; flex-direction: column; }
+  .news-row {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 14px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+  .news-row:last-child { border-bottom: none; }
+  .news-date {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .news-text { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+  .news-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ── Venue badge ─────────────────────────────── */
+  .vbadge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    color: white;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .vb-blue   { background: var(--accent); }
+  .vb-purple { background: var(--purple); }
+  .vb-warm   { background: var(--warm); }
+  .vb-green  { background: var(--green); }
+  .vb-grey   { background: var(--mid); }
+
+  /* ── Link buttons (ABS / PDF / WEBSITE) ──────── */
+  .pub-links { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
+  .pub-link {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 3px;
+    color: var(--mid);
+    background: var(--surface);
+    cursor: pointer;
+    transition: border-color .15s, color .15s;
+    font-family: inherit;
+    line-height: 1.7;
+  }
+  .pub-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  button.pub-link { appearance: none; -webkit-appearance: none; }
+
+  /* ── Publications ────────────────────────────── */
+  .pubs { display: flex; flex-direction: column; gap: 24px; }
+  .pub-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .pub-authors { font-size: 13px; color: var(--mid); margin-bottom: 2px; }
+  .pub-venue   { font-size: 13px; color: var(--mid); font-style: italic; }
+  .pub-me {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+    color: var(--ink-2);
+    font-weight: 600;
+  }
+
+  /* ── Presentations ───────────────────────────── */
+  .pres-list { display: flex; flex-direction: column; gap: 22px; }
+  .pres-title { font-size: 15px; font-style: normal; font-weight: 600; line-height: 1.45; color: var(--ink); margin-bottom: 4px; }
+  .pres-authors { font-size: 13px; color: var(--mid); margin-bottom: 2px; }
+  .pres-venue { font-size: 13px; color: var(--mid); }
+  .pres-venue strong { color: var(--ink-2); font-weight: 600; font-style: normal; }
+
+  /* ── Experience ──────────────────────────────── */
+  .exp-list { display: flex; flex-direction: column; gap: 28px; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 1px;
+  }
+  .exp-role  { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .exp-dates { font-size: 12px; color: var(--mid); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .exp-org   { font-size: 13px; color: var(--mid); font-style: italic; margin-bottom: 8px; }
+  .exp-org .org { color: var(--ink-2); font-style: normal; font-weight: 600; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .exp-bullets li {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    padding-left: 14px;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 1px;
+    color: var(--accent);
+    font-size: 20px;
+    line-height: 1.1;
+  }
+
+  .research-note {
+    margin-top: 7px;
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ── Projects ────────────────────────────────── */
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .proj-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+  .proj-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--warm);
+    margin-bottom: 5px;
+  }
+  .proj-card h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+  .proj-card p  { font-size: 13.8px; color: var(--mid); line-height: 1.6; }
+  .proj-dates   { font-size: 12px; color: var(--mid); margin-top: 8px; }
+
+  /* ── Photo slot (image placeholder) ─────────── */
+  .photo-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: 1.5px dashed var(--border);
+    border-radius: 5px;
+    color: var(--mid);
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    min-height: 100px;
+    transition: border-color .15s, color .15s;
+  }
+  .photo-slot:hover { border-color: var(--accent); color: var(--accent); }
+  .photo-slot svg { opacity: .45; }
+  /* When you add a real image: place <img> inside .photo-slot; the text/icon will be ignored */
+  .photo-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+  .photo-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .ph-tall { min-height: 160px; }
+  .ph-sm   { min-height: 110px; }
+
+
+  /* ── Teaching & Mentorship ─────────────────────── */
+  .teach-list { display: flex; flex-direction: column; gap: 14px; }
+  .teach-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .teach-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .teach-role { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .teach-dates { font-size: 12px; color: var(--mid); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .teach-org { font-size: 12.5px; color: var(--mid); font-style: italic; margin-bottom: 7px; }
+  .teach-card p:last-child { font-size: 13.8px; line-height: 1.6; color: var(--ink-2); }
+
+  /* ── Awards ──────────────────────────────────── */
+  .awards { display: flex; flex-direction: column; }
+  .award-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 60px;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .award-row:last-child { border-bottom: none; }
+  .award-yr   { font-size: 12px; font-weight: 700; color: var(--mid); font-variant-numeric: tabular-nums; }
+  .award-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .award-org  { font-size: 12.5px; color: var(--mid); }
+  .award-thumb .photo-slot { min-height: 56px; font-size: 9px; gap: 3px; border-radius: 4px; }
+
+  /* ── Leadership ──────────────────────────────── */
+  .lead-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+  .lead-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .lead-role  { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+  .lead-dates { font-size: 12px; color: var(--mid); }
+  .lead-org   { font-size: 13px; color: var(--mid); font-style: italic; margin-bottom: 10px; }
+  .lead-bullets { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+  .lead-bullets li {
+    font-size: 13.8px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    padding-left: 14px;
+    position: relative;
+  }
+  .lead-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 1px;
+    color: var(--accent);
+    font-size: 20px;
+    line-height: 1.1;
+  }
+
+  /* ── Link consistency & leadership logo ───────── */
+  a, a:visited { color: var(--accent); }
+  a strong, a:visited strong { color: inherit; }
+  a:hover, a:focus { color: var(--accent-h); }
+  .sb-nav a, .sb-pill, .pub-link { color: var(--accent); }
+  .sb-nav a:hover, .sb-pill:hover, .pub-link:hover { color: var(--accent-h); }
+  .cta-btn:hover { background: transparent; color: var(--accent-h); border-color: var(--accent-h); }
+  .pres-title a { color: var(--accent); text-decoration: none; }
+  .pres-title a:hover { color: var(--accent-h); text-decoration: underline; text-underline-offset: 3px; }
+
+  .lead-card-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  .lead-copy { min-width: 0; flex: 1; }
+  .embs-logo-link {
+    flex: 0 0 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .embs-logo-link:hover { border-color: var(--accent); text-decoration: none; }
+  .embs-logo { width: 100%; height: auto; display: block; }
+  @media (max-width: 700px) {
+    .lead-card-logo { align-items: flex-start; flex-direction: column; }
+    .embs-logo-link { flex-basis: auto; width: 150px; }
+  }
+
+
+  /* ── Top navigation ─────────────────────────── */
+  .top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding: 4px 0 18px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .top-nav a {
+    font-size: 11.8px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .top-nav a:hover { color: var(--accent-h); text-decoration: none; }
+
+  /* ── PDF modal ───────────────────────────────── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--surface);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 860px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,.35);
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 12px;
+  }
+  .modal-title { font-size: 14px; font-weight: 700; color: var(--ink); min-width: 0; }
+  .modal-close {
+    font-size: 20px;
+    color: var(--mid);
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    font-family: inherit;
+    padding: 2px 7px;
+    border-radius: 3px;
+    transition: color .15s, background .15s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { color: var(--ink); background: var(--ground); }
+  .modal-body { flex: 1; overflow: hidden; }
+  .modal-body iframe { width: 100%; height: 75vh; border: none; display: block; }
+  .modal-placeholder {
+    padding: 48px 32px;
+    text-align: center;
+    color: var(--mid);
+  }
+  .modal-placeholder p { margin-bottom: 10px; font-size: 14px; }
+  .modal-placeholder code {
+    font-size: 12px;
+    background: var(--ground);
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: var(--ink-2);
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  /* ── Research journey ────────────────────────── */
+  .journey {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .journey-step {
+    padding: 16px 14px;
+    border-right: 1px solid var(--border);
+    min-height: 126px;
+  }
+  .journey-step:last-child { border-right: none; }
+  .journey-year {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 7px;
+  }
+  .journey-step strong {
+    display: block;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .journey-step p {
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--mid);
+  }
+
+  /* ── Selected research ───────────────────────── */
+  .research-list { display: flex; flex-direction: column; gap: 24px; }
+  .research-feature {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 20px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .research-kicker {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .research-feature h3 {
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .research-feature p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+  .research-metrics {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .research-metric {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--mid);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 8px;
+  }
+  .research-figure {
+    min-height: 176px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, rgba(90,174,224,.12), rgba(107,63,160,.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mid);
+    text-align: center;
+    padding: 18px;
+  }
+  .research-figure img { width:100%; height:100%; min-height:176px; object-fit:cover; display:block; }
+  .research-placeholder strong { display:block; color:var(--ink-2); font-size:12px; margin-bottom:4px; }
+  .research-placeholder span { font-size:10.5px; line-height:1.45; }
+  .mini-research-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .mini-research {
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:17px 18px;
+  }
+  .mini-research h3 { font-size:14px; color:var(--ink); margin-bottom:5px; line-height:1.35; }
+  .mini-research p { font-size:12.5px; color:var(--mid); line-height:1.6; }
+
+  .pub-note {
+    font-size: 12px;
+    color: var(--mid);
+    margin-top: 7px;
+    line-height: 1.55;
+  }
+
+
+  /* ── v3 refinements ─────────────────────────── */
+  .news-scroll {
+    max-height: 390px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .news-scroll::-webkit-scrollbar { width: 6px; }
+  .news-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+  .news-hint {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: .03em;
+  }
+  .journey-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(220px, .75fr);
+    gap: 24px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px;
+    margin-bottom: 22px;
+  }
+  .journey-feature h3 {
+    font-size: 16px;
+    line-height: 1.35;
+    margin: 4px 0 8px;
+    color: var(--ink);
+  }
+  .journey-feature p { color: var(--ink-2); font-size: 13.5px; }
+  .journey-feature .research-figure { margin-top: 0; }
+  .journey-compact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .journey-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .journey-card .journey-year { display:block; margin-bottom: 4px; }
+  .journey-card strong { display:block; color: var(--ink); font-size: 13.5px; margin-bottom: 3px; }
+  .journey-card p { color: var(--mid); font-size: 12.5px; line-height: 1.55; }
+  .project-thumb {
+    width: 100%;
+    height: 118px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .image-fallback { display:none; }
+  @media (max-width: 760px) {
+    .journey-feature { grid-template-columns: 1fr; }
+    .journey-compact { grid-template-columns: 1fr; }
+  }
+
+
+  .journey-intro { color: var(--ink-2); font-size: 14px; line-height: 1.7; max-width: 68ch; margin-bottom: 24px; }
+  .journey-exp-list { gap: 30px; }
+  .journey-copy { color: var(--ink-2); font-size: 14px; line-height: 1.65; }
+  .journey-with-figure { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr); gap: 22px; align-items: start; }
+  .journey-figure { margin-top: 2px; }
+  @media (max-width: 760px) { .journey-with-figure { grid-template-columns: 1fr; } }
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 760px) {
+    .layout { flex-direction: column; gap: 40px; padding: 32px 18px; }
+    .sidebar { width: 100%; position: static; }
+    .avatar { width: 170px; height: 170px; }
+    .top-nav { gap: 8px 14px; margin-bottom: 24px; }
+    .metrics { display: grid; grid-template-columns: repeat(2, 1fr); }
+    .metric { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .metric:nth-child(2n) { border-right: none; }
+    .metric:last-child { grid-column: 1 / -1; border-right: none; border-bottom: none; }
+    .metric  { min-width: 80px; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .news-row  { grid-template-columns: 1fr; gap: 2px; }
+    .award-row { grid-template-columns: 1fr 1fr; }
+    .award-thumb { display: none; }
+    .photo-grid-3 { grid-template-columns: 1fr 1fr; }
+    .journey { grid-template-columns: 1fr 1fr; }
+    .journey-step { border-bottom: 1px solid var(--border); }
+    .research-feature { grid-template-columns: 1fr; }
+    .mini-research-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+  
+  /* Final link-color overrides: keep linked text blue even when nested in bold text. */
+  .about-paras p a, .about-paras p a:visited,
+  .about-paras p a strong, .about-paras p a:visited strong,
+  .news-text a, .news-text a:visited,
+  .news-text a strong, .news-text a:visited strong {
+    color: var(--accent) !important;
+  }
+  .about-paras p a:hover, .about-paras p a:hover strong,
+  .news-text a:hover, .news-text a:hover strong {
+    color: var(--accent-h) !important;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- PDF modal -->
+<div class="modal-overlay" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle"></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════ -->
+  <aside class="sidebar">
+
+    <!--
+      PHOTO: simply upload assets/images/profile.png. No HTML edits are required.
+      <img src="photo.jpg" alt="Hemshankar Laugi">
+      and keep the outer .avatar div.
+    -->
+    <div class="avatar">
+      <img src="assets/images/profile.png" alt="Hemshankar Laugi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span class="avatar-initials" style="display:none;">HL</span>
+    </div>
+
+    <p class="sb-name">Hemshankar Laugi</p>
+    <p class="sb-role">Honors B.S. Biomedical Engineering<br>University of Texas at Arlington</p>
+    <span class="sb-gpa">GPA 3.96 &nbsp;·&nbsp; Expected May 2027</span>
+
+    <div class="sb-links">
+      <!-- Profile and document links -->
+      <a class="sb-pill" href="mailto:laugi.hemshankar@gmail.com">
+        <svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.217l6 4.5 6-4.5V4H4zm12 2.383-5.437 4.078a1 1 0 0 1-1.126 0L4 6.383V16h12V6.383z"/></svg>
+        Email
+      </a>
+      <a class="sb-pill" href="https://linkedin.com/in/hlaugi/" target="_blank" rel="noopener">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.14h.05C12.9 9.05 14.6 8 16.65 8 20.8 8 21.5 10.7 21.5 14.26V24h-4v-8.87c0-2.12-.04-4.85-2.96-4.85-2.96 0-3.41 2.31-3.41 4.7V24h-4V8.5z"/></svg>
+        LinkedIn
+      </a>
+      <a class="sb-pill" href="https://scholar.google.com/citations?user=w_nXNIAAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24A7 7 0 0 1 5 17c0-3.87 3.13-7 7-7s7 3.13 7 7a7 7 0 0 1-7 7zM5.26 3.47L0 7.5 12 .5l12 7-5.26 3.97C17.3 9.78 14.83 9 12 9s-5.3.78-6.74 2.47z"/></svg>
+        Scholar
+      </a>
+      <a class="sb-pill" href="https://github.com/hslaugi" target="_blank" rel="noopener">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a class="sb-pill" href="Laugi_Hemshankar_CV.pdf" target="_blank" rel="noopener">CV</a>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN CONTENT ══════════════════════════════ -->
+  <main class="main">
+
+    <nav class="top-nav" aria-label="Page sections">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#presentations">Presentations</a>
+      <a href="#research">Research Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#teaching">Teaching &amp; Mentorship</a>
+      <a href="#awards">Awards</a>
+      <a href="#leadership">Leadership</a>
+    </nav>
+
+
+    <!-- ── About ─────────────────────────────────── -->
+    <section class="section" id="about">
+      <h2 class="section-label">About</h2>
+      <div class="about-paras">
+        <p>
+          I'm an Honors Biomedical Engineering senior at the University of Texas at Arlington, with minors in Mathematics and Physics. My research journey has taken me across <strong>experimental biology, biomedical data analysis, machine learning, mathematical modeling, neuroimaging, and biopharmaceutical research</strong>.
+        </p>
+        <p>
+          I currently work with Prof. Xi Zhu in the <a href="https://brainlab-uta.github.io/BRAIN-Lab/index.html" target="_blank" rel="noopener"><strong>BRAIN Lab at UTA</strong></a>, where I study plasma proteomics and neuroimaging in Alzheimer's disease. I am also part of UTA's <a href="https://nsf-rtg.uta.edu/" target="_blank" rel="noopener"><strong>NSF Research Training Group (RTG) in Mathematics for Human Health</strong></a>, where I work on mechanistic modeling of multidrug antibiotic resistance.
+        </p>
+        <p>
+          Across these experiences, I have become interested in using quantitative and computational approaches to answer difficult biological and medical questions while staying grounded in the underlying biology.
+        </p>
+        <div class="about-cta">
+          <a class="cta-btn" href="Laugi_Hemshankar_CV.pdf" target="_blank" rel="noopener">CV</a>
+          <a class="cta-btn" href="https://mavmatrix.uta.edu/honors_spring2026/14/" target="_blank" rel="noopener">Honors Thesis</a>
+          <a class="cta-btn" href="https://scholar.google.com/citations?user=w_nXNIAAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Research snapshot ─────────────────────── -->
+    <div class="metrics" aria-label="Research snapshot">
+      <div class="metric"><span class="metric-num">2+</span><span class="metric-label">Years of Research</span></div>
+      <div class="metric"><span class="metric-num">5</span><span class="metric-label">Research Experiences</span></div>
+      <div class="metric"><span class="metric-num">7</span><span class="metric-label">Presentations</span></div>
+      <div class="metric"><span class="metric-num">3</span><span class="metric-label">Scholarly Works</span></div>
+      <div class="metric"><span class="metric-num">3</span><span class="metric-label">Selected Awards</span></div>
+    </div>
+
+    <!-- ── News ──────────────────────────────────── -->
+    <section class="section" id="news">
+      <h2 class="section-label">News</h2>
+      <div class="news news-scroll" aria-label="Recent news; scroll for earlier items">
+        <div class="news-row">
+          <span class="news-date">Sep 2026</span>
+          <span class="news-text">Accepted for a <strong>poster presentation</strong> at the <a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" target="_blank" rel="noopener">UT Systemwide Brain Research Summit 2026</a>, to be held Nov. 5–6 in Austin, TX.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Aug 2026</span>
+          <span class="news-text">Accepted for a <strong>30-minute oral presentation</strong> at the <a href="https://icma2026.umd.edu/" target="_blank" rel="noopener">Tenth International Conference on Mathematical Modeling &amp; Analysis of Populations in Biological Systems (ICMA-X)</a>, to be held Oct. 24–25 at the University of Maryland, College Park.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Aug 2026</span>
+          <span class="news-text">Completed a Process Development internship at <a href="https://www.amgen.com/" target="_blank" rel="noopener"><strong>Amgen</strong></a> in Thousand Oaks, CA.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Apr 2026</span>
+          <span class="news-text">Presented Honors Thesis research at the <strong>UTA Honors Research Symposium</strong>.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Jan 2026</span>
+          <span class="news-text">Co-founded UTA's first <a href="https://www.embs.org/" target="_blank" rel="noopener"><strong>IEEE Engineering in Medicine and Biology Society</strong></a> student chapter.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Aug 2025</span>
+          <span class="news-text">Completed an Analytical Science internship at <a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener"><strong>Boehringer Ingelheim</strong></a> in Fremont, CA.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Apr 2025</span>
+          <span class="news-text">Won <strong>3rd place</strong> for a poster presentation at <a href="https://www.uta.edu/academics/schools-colleges/engineering/students/innovation-day" target="_blank" rel="noopener">UTA College of Engineering Innovation Day</a>.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Sep 2024</span>
+          <span class="news-text">Presented research on nanobody binding specificity to MHC-E at the <a href="https://cihi.uta.edu/texas-health-informatics-alliance/thia-2024/" target="_blank" rel="noopener"><strong>Texas Health Informatics Alliance (THIA) Conference</strong></a> in Arlington, TX.</span>
+        </div>
+        <div class="news-row">
+          <span class="news-date">Aug 2024</span>
+          <span class="news-text">Won <strong>2nd place</strong> at the <a href="https://www.uta.edu/news/news-releases/2024/09/11/health-informatics-training-takes-center-stage-at-uta" target="_blank" rel="noopener">TExBioMed 2024 research presentation competition</a>.</span>
+        </div>
+      </div>
+      <p class="news-hint">Scroll within this section for earlier updates.</p>
+    </section>
+
+    <!-- ── Publications ───────────────────────────── -->
+    <section class="section" id="publications">
+      <h2 class="section-label">Publications &amp; Manuscripts</h2>
+      <div class="pubs">
+        <div>
+          <span class="vbadge vb-purple">Honors Thesis · 2026</span>
+          <p class="pub-title">Interpretable Machine Learning of Plasma Proteomics Reveals Stage-Specific Signatures Across the Alzheimer's Disease Continuum</p>
+          <p class="pub-authors"><span class="pub-me">Laugi, H.</span>, Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
+          <p class="pub-venue">University of Texas at Arlington Honors College · April 2026</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://mavmatrix.uta.edu/honors_spring2026/14/" target="_blank" rel="noopener">Paper</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="vbadge vb-grey">Manuscript in Preparation</span>
+          <p class="pub-title">DenseNext: A Densely Connected Neural Network Architecture with Average Pooling Transformation for Efficient Image Classification</p>
+          <p class="pub-venue">Independent machine-learning research · 2026</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-grey">Manuscript in Preparation</span>
+          <p class="pub-title">Transfer Learning for Alzheimer’s MRI Classification</p>
+          <p class="pub-venue">Independent research project · manuscript in preparation</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Presentations ──────────────────────────── -->
+    <section class="section" id="presentations">
+      <h2 class="section-label">Presentations</h2>
+      <div class="pres-list">
+        <div>
+          <span class="vbadge vb-blue">Poster · Upcoming</span>
+          <p class="pres-title">"From Plasma-Based Classification to Structural Neuroimaging Correlates Across the Alzheimer's Disease Continuum"</p>
+          <p class="pres-authors">Laugi, H., Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
+          <p class="pres-venue"><strong><a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" target="_blank" rel="noopener">UT Systemwide Brain Research Summit 2026</a></strong> · Austin, TX · November 2026</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-warm">Oral · 30 min</span>
+          <p class="pres-title">"Evaluating Multidrug Treatment Strategies for Polymicrobial Coinfection in Cystic Fibrosis"</p>
+          <p class="pres-authors">Laugi, H., et al.</p>
+          <p class="pres-venue"><strong><a href="https://icma2026.umd.edu/" target="_blank" rel="noopener">Tenth International Conference on Mathematical Modeling &amp; Analysis of Populations in Biological Systems (ICMA-X)</a></strong> · University of Maryland, College Park · October 2026</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-green">Oral</span>
+          <p class="pres-title">"B2A PRO: Automation of the Scale-up Process for the Beacon2Ambr Clone Screening Workflow"</p>
+          <p class="pres-authors">Laugi, H., Zah, E., &amp; Venkatachalapathy, H.</p>
+          <p class="pres-venue"><strong>Summer Internship Presentation</strong> · <a href="https://www.amgen.com/" target="_blank" rel="noopener">Amgen</a> · Thousand Oaks, CA · August 2026</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-blue">Poster</span>
+          <p class="pres-title">"Interpretable Machine Learning of Plasma Proteomic Biomarkers for Multi-Stage Alzheimer's Disease Classification"</p>
+          <p class="pres-authors">Laugi, H., Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
+          <p class="pres-venue"><strong>UTA Honors Research Symposium</strong> · University of Texas at Arlington · April 2026</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-green">Poster &amp; Oral</span>
+          <p class="pres-title">"Establishing Imaged Capillary Isoelectric Focusing (icIEF) Fractionation on MauriceFlex for High-Throughput Analytical Characterization of Protein Charge Variants"</p>
+          <p class="pres-authors">Laugi, H., &amp; Mehra, R.</p>
+          <p class="pres-venue"><strong>Summer Internship Presentation</strong> · <a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener">Boehringer Ingelheim</a> · Fremont, CA · August 2025</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-blue">Poster · 3rd Place</span>
+          <p class="pres-title"><a href="https://www.uta.edu/academics/schools-colleges/engineering/students/innovation-day" target="_blank" rel="noopener">"Engineering a Yeast Surface Display Platform for Peptide/MHC Expression and Rapid Characterization of T Cell Receptor Mimic Antibodies"</a></p>
+          <p class="pres-authors">Laugi, H., Ghaffari, S., &amp; Weidanz, J.</p>
+          <p class="pres-venue"><strong>UTA College of Engineering Innovation Day</strong> · April 2025</p>
+        </div>
+
+        <div>
+          <span class="vbadge vb-purple">Poster</span>
+          <p class="pres-title"><a href="https://bpb-us-e1.wpmucdn.com/websites.uta.edu/dist/0/5087/files/2024/09/Abstract-Packet-THIA-2024.pdf" target="_blank" rel="noopener">"Assessing the Binding Specificity of Nanobodies to Major Histocompatibility Complex (MHC)-E Protein"</a></p>
+          <p class="pres-authors">Laugi, H., Ghaffari, S., &amp; Weidanz, J.</p>
+          <p class="pres-venue"><strong><a href="https://cihi.uta.edu/texas-health-informatics-alliance/thia-2024/" target="_blank" rel="noopener">Texas Health Informatics Alliance (THIA) Conference</a></strong> · Arlington, TX · September 2024</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Research Experience ───────────────────────── -->
+    <section class="section" id="research">
+      <h2 class="section-label">Research Experience</h2>
+      <p class="journey-intro">My research spans computational and experimental biology, with each experience adding a different perspective on how biological questions can be studied—from machine learning and mechanistic modeling to automation, analytical measurement, and wet-lab experimentation.</p>
+
+      <div class="exp-list journey-exp-list">
+        <article class="journey-with-figure">
+          <div>
+            <div class="exp-header">
+              <span class="exp-role">Undergraduate Research Assistant</span>
+              <span class="exp-dates">Oct 2025 – Present</span>
+            </div>
+            <p class="exp-org"><span class="org"><a href="https://brainlab-uta.github.io/BRAIN-Lab/index.html" target="_blank" rel="noopener">BRAIN Lab @ UTA</a></span> · Advisor: Prof. Xi Zhu</p>
+            <p class="journey-copy">My current work combines interpretable machine learning, plasma proteomics, and structural MRI to study Alzheimer's disease across multiple clinical stages. This work has strengthened my interest in using computational methods to connect molecular and imaging data with biologically meaningful questions.</p>
+            <p class="research-note">Manuscript in preparation (first author).</p>
+          </div>
+          <div class="research-figure journey-figure">
+            <img src="assets/images/alzheimers-project-schematic.png" alt="Schematic of Alzheimer's plasma proteomics and neuroimaging project" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="research-placeholder" style="display:none;"><strong>Project schematic</strong><span>Upload as:<br>assets/images/alzheimers-project-schematic.png</span></div>
+          </div>
+        </article>
+
+        <article>
+          <div class="exp-header">
+            <span class="exp-role">Undergraduate Researcher</span>
+            <span class="exp-dates">Sep 2025 – Present</span>
+          </div>
+          <p class="exp-org"><span class="org"><a href="https://nsf-rtg.uta.edu/" target="_blank" rel="noopener">NSF Research Training Group in Mathematics for Human Health</a></span> · University of Texas at Arlington</p>
+          <p class="journey-copy">Co-developing mechanistic ODE models of multidrug antibiotic resistance in <em>S. aureus</em> and <em>P. aeruginosa</em>, with parameter estimation from experimental data. This experience introduced me to mathematical modeling as another way to investigate biological systems and treatment dynamics.</p>
+        </article>
+
+        <article>
+          <div class="exp-header">
+            <span class="exp-role">Process Development Intern</span>
+            <span class="exp-dates">May – Aug 2026</span>
+          </div>
+          <p class="exp-org"><span class="org"><a href="https://www.amgen.com/" target="_blank" rel="noopener">Amgen</a></span> · Thousand Oaks, CA</p>
+          <p class="journey-copy">Developed and validated an automated cell-culture scale-up workflow for a clone-screening process. This experience showed me how engineering, automation, and quantitative validation can improve biological workflows at scale.</p>
+        </article>
+
+        <article>
+          <div class="exp-header">
+            <span class="exp-role">Analytical Science Intern</span>
+            <span class="exp-dates">May – Aug 2025</span>
+          </div>
+          <p class="exp-org"><span class="org"><a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener">Boehringer Ingelheim</a></span> · Fremont, CA</p>
+          <p class="journey-copy">Worked on analytical characterization of protein charge variants using MauriceFlex icIEF. Developing and optimizing the workflow sharpened my interest in quantitative measurement, reproducibility, and using data to improve experimental methods.</p>
+        </article>
+
+        <article>
+          <div class="exp-header">
+            <span class="exp-role">Undergraduate Research Assistant</span>
+            <span class="exp-dates">May 2024 – Apr 2025</span>
+          </div>
+          <p class="exp-org"><span class="org">Cancer Immunotherapy Lab</span> · University of Texas at Arlington</p>
+          <p class="journey-copy">Built my experimental foundation through protein expression, purification, and characterization studies alongside molecular, protein, and genetic experiments involving nanobodies, TCR-mimic antibodies, and yeast surface display. This work gave me first-hand experience translating biological questions into experiments and measurements.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2 class="section-label">Projects</h2>
+      <div class="proj-grid">
+        <article class="proj-card">
+          <img class="project-thumb" src="assets/images/facial-asymmetry.png" alt="3D facial asymmetry project visualization" onerror="this.style.display='none';">
+          <p class="proj-tag">Software, UI/UX &amp; Computer Vision Lead</p>
+          <h3>Handheld Facial Asymmetry Assessment Device</h3>
+          <p>Developing a 3D computer-vision pipeline using depth imaging, point clouds, and facial landmarks for objective and repeatable assessment of facial asymmetry.</p>
+          <p class="proj-dates">Aug 2026 – Present</p>
+        </article>
+
+        <article class="proj-card">
+          <img class="project-thumb" src="assets/images/densenext.png" alt="DenseNext architecture visualization" onerror="this.style.display='none';">
+          <p class="proj-tag">Independent Machine Learning Research</p>
+          <h3>DenseNext</h3>
+          <p>Exploring a parameter-efficient densely connected neural-network architecture using average-pooling transformations; initial experiments achieved DenseNet-comparable performance with ~30% fewer parameters.</p>
+          <p class="proj-dates">Manuscript in preparation</p>
+        </article>
+
+        <article class="proj-card">
+          <img class="project-thumb" src="assets/images/transfer-learning.png" alt="Transfer learning project visualization" onerror="this.style.display='none';">
+          <p class="proj-tag">Independent Research</p>
+          <h3>Transfer Learning for Alzheimer’s MRI Classification</h3>
+          <p>Ongoing independent work examining transfer-learning strategies and their performance across related learning tasks.</p>
+          <p class="proj-dates">Manuscript in preparation</p>
+        </article>
+
+        <article class="proj-card">
+          <img class="project-thumb" src="assets/images/cerebral-palsy-mri.png" alt="Diffusion MRI and tractography visualization from cerebral palsy project" onerror="this.style.display='none';">
+          <p class="proj-tag">Neuroimaging Research</p>
+          <h3>Cerebral Palsy Diffusion MRI &amp; Tractography</h3>
+          <p>Analyzed diffusion MRI data using DSI Studio tractography, focusing on fiber-tract reconstruction and structural connectivity in cerebral palsy, while gaining exposure to clinical neuroimaging data collection.</p>
+          <p class="proj-dates"><a href="https://www.cookchildrens.org/services/neurosciences-research/" target="_blank" rel="noopener">Cook Children's Neuroscience Research Center</a> · 2025</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ── Teaching & Mentorship ─────────────────────── -->
+    <section class="section" id="teaching">
+      <h2 class="section-label">Teaching &amp; Mentorship</h2>
+      <div class="teach-list">
+        <article class="teach-card">
+          <div class="teach-header">
+            <span class="teach-role"><a href="https://www.uta.edu/academics/schools-colleges/science/departments/physics/advising/physics-help-clinic" target="_blank" rel="noopener">Physics Tutor</a></span>
+            <span class="teach-dates">Sep – Dec 2025</span>
+          </div>
+          <p class="teach-org">Department of Physics · University of Texas at Arlington</p>
+          <p>Supported undergraduate students in calculus-based physics through individualized and group tutoring, with an emphasis on conceptual understanding, quantitative reasoning, and problem-solving strategies.</p>
+        </article>
+
+        <article class="teach-card">
+          <div class="teach-header">
+            <span class="teach-role">Course Grader · Differential Equations &amp; Linear Algebra</span>
+          </div>
+          <p class="teach-org">Department of Mathematics · University of Texas at Arlington</p>
+          <p>Graded weekly assignments for 50+ students and provided feedback on mathematical reasoning, accuracy, and problem-solving approaches in advanced undergraduate coursework.</p>
+        </article>
+
+        <article class="teach-card">
+          <div class="teach-header">
+            <span class="teach-role">Student Tutor &amp; Program Assistant</span>
+            <span class="teach-dates">Sep 2023 – May 2024</span>
+          </div>
+          <p class="teach-org"><a href="https://www.uta.edu/enrollment-management/trio/upward-bound-math-science" target="_blank" rel="noopener">UTA Upward Bound Math &amp; Science Center</a></p>
+          <p>Tutored first-generation high school students in mathematics, physics, chemistry, and biology across four Texas high schools while also supporting program outreach and student services.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── Awards ──────────────────────────────────── -->
+    <section class="section" id="awards">
+      <h2 class="section-label">Selected Awards</h2>
+      <div class="awards">
+        <div class="award-row">
+          <span class="award-yr">Apr 2025</span>
+          <div><p class="award-name">Alfred R. &amp; Janet H. Potvin Outstanding Bioengineering Student Award</p><p class="award-org">UTA Bioengineering Department</p></div>
+          <span></span>
+        </div>
+        <div class="award-row">
+          <span class="award-yr">Apr 2025</span>
+          <div><p class="award-name">3rd Place — Poster Presentation</p><p class="award-org">UTA College of Engineering Innovation Day</p></div>
+          <span></span>
+        </div>
+        <div class="award-row">
+          <span class="award-yr">Aug 2024</span>
+          <div><p class="award-name">2nd Place — Research Presentation, TExBioMed 2024</p><p class="award-org">TExBioMed 2024 Competition</p></div>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Leadership ───────────────────────────────── -->
+    <section class="section" id="leadership">
+      <h2 class="section-label">Leadership &amp; Community</h2>
+      <div class="lead-card lead-card-logo">
+        <div class="lead-copy">
+          <div class="lead-header">
+            <span class="lead-role">Co-Founder &amp; Vice-Chair</span>
+            <span class="lead-dates">Jan 2026 – Present</span>
+          </div>
+          <p class="lead-org"><a href="https://www.embs.org/" target="_blank" rel="noopener">IEEE Engineering in Medicine and Biology Society (EMBS)</a> — UTA Chapter</p>
+          <ul class="lead-bullets">
+            <li>Co-founded UTA's first IEEE EMBS student chapter and helped build an interdisciplinary executive board.</li>
+            <li>Organize research, technical, and professional-development activities and help connect students with faculty and biomedical opportunities.</li>
+          </ul>
+        </div>
+        <a class="embs-logo-link" href="https://www.embs.org/" target="_blank" rel="noopener" aria-label="IEEE Engineering in Medicine and Biology Society">
+          <img class="embs-logo" src="https://www.embs.org/wp-content/uploads/2024/06/ieee-embs-tag-tm-logo2x.png" alt="IEEE Engineering in Medicine and Biology Society logo" loading="lazy" onerror="this.closest('.embs-logo-link').style.display='none';">
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div><!-- end .layout -->
+
+<!-- ── PDF / Slides modal ──────────────────────── -->
+<script>
+  const overlay    = document.getElementById('pdfModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody  = document.getElementById('modalBody');
+  const closeBtn   = document.getElementById('modalClose');
+
+  /**
+   * openPDF(title, url)
+   * Replace 'YOUR_POSTER_PDF_URL' / 'YOUR_SLIDES_PDF_URL' in the onclick attributes
+   * above with your actual PDF URL, e.g.:
+   *   - Direct link: 'https://raw.githubusercontent.com/YOU/repo/main/posters/poster.pdf'
+   *   - Google Drive: 'https://drive.google.com/file/d/FILE_ID/preview'
+   */
+  function openPDF(title, url) {
+    modalTitle.textContent = title;
+    const placeholder = !url || url === '#' || url.startsWith('YOUR_');
+    modalBody.innerHTML = placeholder
+      ? `<div class="modal-placeholder">
+           <p><strong>PDF not yet linked.</strong></p>
+           <p>In the HTML, find the button for <em>${title}</em><br>and replace the URL placeholder with your real link:</p>
+           <code>'https://your-hosted-pdf-url.com/file.pdf'</code>
+           <p style="margin-top:16px;font-size:12px;">For Google Drive: share the file → copy link → change /view to /preview</p>
+         </div>`
+      : `<iframe src="${url}" title="${title}" allowfullscreen></iframe>`;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    modalBody.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
