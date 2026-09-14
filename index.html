@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hemshankar Laugi</title>
-  <meta name="description" content="Hemshankar Laugi — biomedical engineering researcher working across computational, quantitative, and experimental approaches to biology and medicine.">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 
-  <style>
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hemshankar Laugi</title>
+<meta content="Hemshankar Laugi — biomedical engineering researcher working across computational, quantitative, and experimental approaches to biology and medicine." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,400;1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
   /* ── Design tokens ─────────────────────────── */
   :root {
     --ground:    #F0F4F8;
@@ -932,422 +932,480 @@
     .research-figure.expandable::after { opacity: 1; }
   }
 
+
+
+  /* ── Final refinements ───────────────────────── */
+  .news-text { font-size: 14.5px; line-height: 1.6; }
+  .news-text a, .news-text a:visited { font-weight: 700; }
+  .news-subheading {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .featured-news-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 15px 17px;
+    margin-bottom: 2px;
+  }
+  .featured-news-link {
+    display: inline-block;
+    font-size: 14.5px;
+    line-height: 1.45;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .featured-news-card p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .research-note-strong {
+    color: var(--accent) !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+  }
+  .research-figure.expandable { position: relative; }
+  .image-maximize-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    border: 1px solid rgba(255,255,255,.75);
+    background: rgba(11,19,34,.82);
+    color: #fff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,.28);
+    opacity: .94;
+    transition: background .15s, transform .15s, opacity .15s;
+  }
+  .research-figure.expandable:hover .image-maximize-btn,
+  .image-maximize-btn:focus-visible {
+    background: var(--accent);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+  .award-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 16px;
+  }
+  .award-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+  }
+  .award-image-wrap {
+    height: 170px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .award-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .award-image-fallback {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mid);
+    background: var(--surface);
+  }
+  .award-card-copy { padding: 14px 15px 16px; }
+  .award-card-date {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .award-card .award-name { font-size: 13.5px; line-height: 1.45; margin-bottom: 5px; }
+  .award-card .award-org { font-size: 12px; line-height: 1.5; }
+  @media (max-width: 900px) {
+    .award-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .award-grid { grid-template-columns: 1fr; }
+    .award-image-wrap { height: 210px; }
+  }
 </style>
 </head>
-
 <body>
-
 <!-- PDF modal -->
-<div class="modal-overlay" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box">
-    <div class="modal-header">
-      <span class="modal-title" id="modalTitle"></span>
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal-overlay" id="pdfModal" role="dialog">
+<div class="modal-box">
+<div class="modal-header">
+<span class="modal-title" id="modalTitle"></span>
+<button aria-label="Close" class="modal-close" id="modalClose">✕</button>
 </div>
-
-
+<div class="modal-body" id="modalBody"></div>
+</div>
+</div>
 <!-- Full-screen research image viewer -->
-<div class="image-modal-overlay" id="imageModal" role="dialog" aria-modal="true" aria-label="Expanded research figure" aria-hidden="true">
-  <button class="image-modal-close" id="imageModalClose" aria-label="Close expanded image">×</button>
-  <div class="image-modal-dialog">
-    <img id="imageModalImg" src="" alt="">
-  </div>
-  <div class="image-modal-caption" id="imageModalCaption"></div>
+<div aria-hidden="true" aria-label="Expanded research figure" aria-modal="true" class="image-modal-overlay" id="imageModal" role="dialog">
+<button aria-label="Close expanded image" class="image-modal-close" id="imageModalClose">×</button>
+<div class="image-modal-dialog">
+<img alt="" id="imageModalImg" src=""/>
 </div>
-
+<div class="image-modal-caption" id="imageModalCaption"></div>
+</div>
 <div class="layout">
-
-  <!-- ══ SIDEBAR ══════════════════════════════════ -->
-  <aside class="sidebar">
-
-    <!--
+<!-- ══ SIDEBAR ══════════════════════════════════ -->
+<aside class="sidebar">
+<!--
       PHOTO: simply upload assets/images/profile.png. No HTML edits are required.
       <img src="photo.jpg" alt="Hemshankar Laugi">
       and keep the outer .avatar div.
     -->
-    <div class="avatar">
-      <img src="assets/images/profile.png" alt="Hemshankar Laugi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <span class="avatar-initials" style="display:none;">HL</span>
-    </div>
-
-    <p class="sb-name">Hemshankar Laugi</p>
-    <p class="sb-role">Honors B.S. Biomedical Engineering<br>University of Texas at Arlington</p>
-    <span class="sb-gpa">GPA 3.96 &nbsp;·&nbsp; Expected May 2027</span>
-
-    <div class="sb-links">
-      <!-- Profile and document links -->
-      <a class="sb-pill" href="mailto:laugi.hemshankar@gmail.com">
-        <svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.217l6 4.5 6-4.5V4H4zm12 2.383-5.437 4.078a1 1 0 0 1-1.126 0L4 6.383V16h12V6.383z"/></svg>
+<div class="avatar">
+<img alt="Hemshankar Laugi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" src="assets/images/profile.png"/>
+<span class="avatar-initials" style="display:none;">HL</span>
+</div>
+<p class="sb-name">Hemshankar Laugi</p>
+<p class="sb-role">Honors B.S. Biomedical Engineering<br/>University of Texas at Arlington</p>
+<span class="sb-gpa">GPA 3.96  ·  Expected May 2027</span>
+<div class="sb-links">
+<!-- Profile and document links -->
+<a class="sb-pill" href="mailto:laugi.hemshankar@gmail.com">
+<svg aria-hidden="true" fill="currentColor" height="11" viewbox="0 0 20 20" width="11"><path d="M2 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.217l6 4.5 6-4.5V4H4zm12 2.383-5.437 4.078a1 1 0 0 1-1.126 0L4 6.383V16h12V6.383z"></path></svg>
         Email
       </a>
-      <a class="sb-pill" href="https://linkedin.com/in/hlaugi/" target="_blank" rel="noopener">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.14h.05C12.9 9.05 14.6 8 16.65 8 20.8 8 21.5 10.7 21.5 14.26V24h-4v-8.87c0-2.12-.04-4.85-2.96-4.85-2.96 0-3.41 2.31-3.41 4.7V24h-4V8.5z"/></svg>
+<a class="sb-pill" href="https://linkedin.com/in/hlaugi/" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="11" viewbox="0 0 24 24" width="11"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.14h.05C12.9 9.05 14.6 8 16.65 8 20.8 8 21.5 10.7 21.5 14.26V24h-4v-8.87c0-2.12-.04-4.85-2.96-4.85-2.96 0-3.41 2.31-3.41 4.7V24h-4V8.5z"></path></svg>
         LinkedIn
       </a>
-      <a class="sb-pill" href="https://scholar.google.com/citations?user=w_nXNIAAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24A7 7 0 0 1 5 17c0-3.87 3.13-7 7-7s7 3.13 7 7a7 7 0 0 1-7 7zM5.26 3.47L0 7.5 12 .5l12 7-5.26 3.97C17.3 9.78 14.83 9 12 9s-5.3.78-6.74 2.47z"/></svg>
+<a class="sb-pill" href="https://scholar.google.com/citations?user=w_nXNIAAAAAJ&amp;hl=en&amp;oi=ao" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="11" viewbox="0 0 24 24" width="11"><path d="M12 24A7 7 0 0 1 5 17c0-3.87 3.13-7 7-7s7 3.13 7 7a7 7 0 0 1-7 7zM5.26 3.47L0 7.5 12 .5l12 7-5.26 3.97C17.3 9.78 14.83 9 12 9s-5.3.78-6.74 2.47z"></path></svg>
         Scholar
       </a>
-      <a class="sb-pill" href="https://github.com/hslaugi" target="_blank" rel="noopener">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+<a class="sb-pill" href="https://github.com/hslaugi" rel="noopener" target="_blank">
+<svg aria-hidden="true" fill="currentColor" height="11" viewbox="0 0 24 24" width="11"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
         GitHub
       </a>
-      <a class="sb-pill" href="Laugi_Hemshankar_CV.pdf" target="_blank" rel="noopener">CV</a>
-    </div>
-  </aside>
-
-  <!-- ══ MAIN CONTENT ══════════════════════════════ -->
-  <main class="main">
-
-    <nav class="top-nav" aria-label="Page sections">
-      <a href="#about">About</a>
-      <a href="#news">News</a>
-      <a href="#publications">Publications</a>
-      <a href="#presentations">Presentations</a>
-      <a href="#research">Research Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#teaching">Teaching &amp; Mentorship</a>
-      <a href="#awards">Awards</a>
-      <a href="#leadership">Leadership</a>
-    </nav>
-
-
-    <!-- ── About ─────────────────────────────────── -->
-    <section class="section" id="about">
-      <h2 class="section-label">About</h2>
-      <div class="about-paras">
-        <p>
+<a class="sb-pill" href="Laugi_Hemshankar_CV.pdf" rel="noopener" target="_blank">CV</a>
+</div>
+</aside>
+<!-- ══ MAIN CONTENT ══════════════════════════════ -->
+<main class="main">
+<nav aria-label="Page sections" class="top-nav">
+<a href="#about">About</a>
+<a href="#news">News</a>
+<a href="#publications">Publications</a>
+<a href="#presentations">Presentations</a>
+<a href="#research">Research Experience</a>
+<a href="#projects">Projects</a>
+<a href="#teaching">Teaching &amp; Mentorship</a>
+<a href="#awards">Awards</a>
+<a href="#leadership">Leadership</a>
+</nav>
+<!-- ── About ─────────────────────────────────── -->
+<section class="section" id="about">
+<h2 class="section-label">About</h2>
+<div class="about-paras">
+<p>
           I'm an Honors Biomedical Engineering senior at the University of Texas at Arlington, with minors in Mathematics and Physics. My research journey has taken me across <strong>experimental biology, biomedical data analysis, machine learning, mathematical modeling, neuroimaging, and biopharmaceutical research</strong>.
         </p>
-        <p>
-          I currently work with Prof. Xi Zhu in the <a href="https://brainlab-uta.github.io/BRAIN-Lab/index.html" target="_blank" rel="noopener"><strong>BRAIN Lab at UTA</strong></a>, where I study plasma proteomics and neuroimaging in Alzheimer's disease. I am also part of UTA's <a href="https://nsf-rtg.uta.edu/" target="_blank" rel="noopener"><strong>NSF Research Training Group (RTG) in Mathematics for Human Health</strong></a>, where I work on mechanistic modeling of multidrug antibiotic resistance.
+<p>
+          I currently work with Prof. Xi Zhu in the <a href="https://brainlab-uta.github.io/BRAIN-Lab/index.html" rel="noopener" target="_blank"><strong>BRAIN Lab at UTA</strong></a>, where I study plasma proteomics and neuroimaging in Alzheimer's disease. I am also part of UTA's <a href="https://nsf-rtg.uta.edu/" rel="noopener" target="_blank"><strong>NSF Research Training Group (RTG) in Mathematics for Human Health</strong></a>, where I work on mechanistic modeling of multidrug antibiotic resistance.
         </p>
-        <p>
-          Across these experiences, I have become interested in using quantitative and computational approaches to answer difficult biological and medical questions while staying grounded in the underlying biology.
-        </p>
-        <div class="about-cta">
-          <a class="cta-btn" href="Laugi_Hemshankar_CV.pdf" target="_blank" rel="noopener">CV</a>
-          <a class="cta-btn" href="https://mavmatrix.uta.edu/honors_spring2026/14/" target="_blank" rel="noopener">Honors Thesis</a>
-          <a class="cta-btn" href="https://scholar.google.com/citations?user=w_nXNIAAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
-        </div>
-      </div>
-    </section>
+<p>I’m motivated by curiosity, interdisciplinary problem-solving, and the chance to turn complex questions into useful knowledge. I enjoy learning new methods when a problem demands them, working across disciplines, and helping others grow along the way. Long term, I hope to build a research career developing quantitative and computational approaches that deepen our understanding of biology and disease while contributing to a collaborative and supportive scientific community.</p>
+<div class="about-cta">
+<a class="cta-btn" href="Laugi_Hemshankar_CV.pdf" rel="noopener" target="_blank">CV</a>
+<a class="cta-btn" href="https://mavmatrix.uta.edu/honors_spring2026/14/" rel="noopener" target="_blank">Honors Thesis</a>
+<a class="cta-btn" href="https://scholar.google.com/citations?user=w_nXNIAAAAAJ&amp;hl=en&amp;oi=ao" rel="noopener" target="_blank">Google Scholar</a>
+</div>
+</div>
+</section>
+<!-- ── Research snapshot ─────────────────────── -->
+<div aria-label="Research snapshot" class="metrics">
+<div class="metric"><span class="metric-num">2+</span><span class="metric-label">Years of Research</span></div>
+<div class="metric"><span class="metric-num">5</span><span class="metric-label">Research Experiences</span></div>
+<div class="metric"><span class="metric-num">7</span><span class="metric-label">Presentations</span></div>
+<div class="metric"><span class="metric-num">3</span><span class="metric-label">Scholarly Works</span></div>
+<div class="metric"><span class="metric-num">3</span><span class="metric-label">Selected Awards</span></div>
+</div>
+<!-- ── News ──────────────────────────────────── -->
+<section class="section" id="news">
+<h2 class="section-label">News</h2>
+<h3 class="news-subheading">Featured News</h3><div class="featured-news-card"><a class="featured-news-link" href="https://www.uta.edu/news/news-releases/2024/09/11/health-informatics-training-takes-center-stage-at-uta" rel="noopener" target="_blank">Health informatics training takes center stage at UTA</a><p>UTA News · September 2024 — feature highlighting my TExBioMed research presentation and participation in the Texas Health Informatics Alliance conference.</p></div><h3 class="news-subheading" style="margin-top:22px;">Recent Updates</h3><div aria-label="Recent news; scroll for earlier items" class="news news-scroll">
+<div class="news-row">
+<span class="news-date">Sep 2026</span>
+<span class="news-text">Accepted for a <strong>poster presentation</strong> at the <a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" rel="noopener" target="_blank">UT Systemwide Brain Research Summit 2026</a>, to be held Nov. 5–6 in Austin, TX.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Aug 2026</span>
+<span class="news-text">Accepted for a <strong>30-minute oral presentation</strong> at the <a href="https://icma2026.umd.edu/" rel="noopener" target="_blank">Tenth International Conference on Mathematical Modeling &amp; Analysis of Populations in Biological Systems (ICMA-X)</a>, to be held Oct. 24–25 at the University of Maryland, College Park.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Aug 2026</span>
+<span class="news-text">Completed a Process Development internship at <a href="https://www.amgen.com/" rel="noopener" target="_blank"><strong>Amgen</strong></a> in Thousand Oaks, CA.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Apr 2026</span>
+<span class="news-text">Presented Honors Thesis research at the <strong>UTA Honors Research Symposium</strong>.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Jan 2026</span>
+<span class="news-text">Co-founded UTA's first <a href="https://www.embs.org/" rel="noopener" target="_blank"><strong>IEEE Engineering in Medicine and Biology Society</strong></a> student chapter.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Aug 2025</span>
+<span class="news-text">Completed an Analytical Science internship at <a href="https://www.boehringer-ingelheim.com/" rel="noopener" target="_blank"><strong>Boehringer Ingelheim</strong></a> in Fremont, CA.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Apr 2025</span>
+<span class="news-text">Won <strong>3rd place</strong> for a poster presentation at <a href="https://www.uta.engineering/innovationday/awards-2025.php?k=he" rel="noopener" target="_blank">UTA College of Engineering Innovation Day</a>.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Sep 2024</span>
+<span class="news-text">Presented cancer immunotherapy and antibody discovery research at the <a href="https://cihi.uta.edu/texas-health-informatics-alliance/thia-2024/" rel="noopener" target="_blank">Texas Health Informatics Alliance (THIA) Conference</a> in Arlington, TX.</span>
+</div>
+<div class="news-row">
+<span class="news-date">Aug 2024</span>
+<span class="news-text">Won <strong>2nd place</strong> at the <a href="https://www.uta.edu/news/news-releases/2024/09/11/health-informatics-training-takes-center-stage-at-uta" rel="noopener" target="_blank">TExBioMed 2024 research presentation competition</a>.</span>
+</div>
+</div>
+<p class="news-hint">Scroll within this section for earlier updates.</p>
+</section>
+<!-- ── Publications ───────────────────────────── -->
+<section class="section" id="publications">
+<h2 class="section-label">Publications &amp; Manuscripts</h2>
+<div class="pubs">
+<div>
+<span class="vbadge vb-purple">Honors Thesis · 2026</span>
+<p class="pub-title">Interpretable Machine Learning of Plasma Proteomics Reveals Stage-Specific Signatures Across the Alzheimer's Disease Continuum</p>
+<p class="pub-authors"><span class="pub-me">Laugi, H.</span>, Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
+<p class="pub-venue">University of Texas at Arlington Honors College · April 2026</p>
+<div class="pub-links">
+<a class="pub-link" href="https://mavmatrix.uta.edu/honors_spring2026/14/" rel="noopener" target="_blank">Paper</a>
+</div>
+</div>
+<div>
+<span class="vbadge vb-grey">Manuscript in Preparation</span>
+<p class="pub-title">DenseNext: A Densely Connected Neural Network Architecture with Average Pooling Transformation for Efficient Image Classification</p><p class="pub-authors"><span class="pub-me">Laugi, H.</span>, Tang, H.</p>
+<p class="pub-venue">Independent machine-learning research · 2026</p>
+</div>
+<div>
+<span class="vbadge vb-grey">Manuscript in Preparation</span>
+<p class="pub-title">Transfer Learning for Alzheimer’s MRI Classification</p>
+<p class="pub-venue">Independent research project · manuscript in preparation</p>
+</div>
+</div>
+</section>
+<!-- ── Presentations ──────────────────────────── -->
+<section class="section" id="presentations">
+<h2 class="section-label">Presentations</h2>
+<div class="pres-list">
+<div>
+<span class="vbadge vb-blue">Poster · Upcoming</span>
+<p class="pres-title">From Plasma-Based Classification to Structural Neuroimaging Correlates Across the Alzheimer's Disease Continuum</p>
+<p class="pres-authors">Laugi, H., Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
+<p class="pres-venue"><strong><a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" rel="noopener" target="_blank">UT Systemwide Brain Research Summit 2026</a></strong> · Austin, TX · November 2026</p>
+</div>
+<div>
+<span class="vbadge vb-warm">Oral · 30 min</span>
+<p class="pres-title">Evaluating Multidrug Treatment Strategies for Polymicrobial Coinfection in Cystic Fibrosis</p>
+<p class="pres-authors">Laugi, H., et al.</p>
+<p class="pres-venue"><strong><a href="https://icma2026.umd.edu/" rel="noopener" target="_blank">Tenth International Conference on Mathematical Modeling &amp; Analysis of Populations in Biological Systems (ICMA-X)</a></strong> · University of Maryland, College Park · October 2026</p>
+</div>
+<div>
+<span class="vbadge vb-green">Oral</span>
+<p class="pres-title">B2A PRO: Automation of the Scale-up Process for the Beacon2Ambr Clone Screening Workflow</p>
+<p class="pres-authors">Laugi, H., Zah, E., &amp; Venkatachalapathy, H.</p>
+<p class="pres-venue"><strong>Summer Internship Presentation</strong> · <a href="https://www.amgen.com/" rel="noopener" target="_blank">Amgen</a> · Thousand Oaks, CA · August 2026</p>
+</div>
+<div>
+<span class="vbadge vb-blue">Poster</span>
+<p class="pres-title">Interpretable Machine Learning of Plasma Proteomic Biomarkers for Multi-Stage Alzheimer's Disease Classification</p>
+<p class="pres-authors">Laugi, H., Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
+<p class="pres-venue"><strong>UTA Honors Research Symposium</strong> · University of Texas at Arlington · April 2026</p>
+</div>
+<div>
+<span class="vbadge vb-green">Poster &amp; Oral</span>
+<p class="pres-title">Establishing Imaged Capillary Isoelectric Focusing (icIEF) Fractionation on MauriceFlex for High-Throughput Analytical Characterization of Protein Charge Variants</p>
+<p class="pres-authors">Laugi, H., &amp; Mehra, R.</p>
+<p class="pres-venue"><strong>Summer Internship Presentation</strong> · <a href="https://www.boehringer-ingelheim.com/" rel="noopener" target="_blank">Boehringer Ingelheim</a> · Fremont, CA · August 2025</p>
+</div>
+<div>
+<span class="vbadge vb-blue">Poster · 3rd Place</span>
+<p class="pres-title">Engineering a Yeast Surface Display Platform for Peptide/MHC Expression and Rapid Characterization of T Cell Receptor Mimic Antibodies</p>
+<p class="pres-authors">Laugi, H., Ghaffari, S., &amp; Weidanz, J.</p>
+<p class="pres-venue"><strong><a href="https://uta.engineering/innovationday/project-2025.php?p=109&amp;h=05d96628245068fc9d6bcdd3fb9cb859" rel="noopener" target="_blank">UTA College of Engineering Innovation Day</a></strong> · April 2025</p>
+</div>
+<div>
+<span class="vbadge vb-purple">Poster</span>
+<p class="pres-title">Assessing the Binding Specificity of Nanobodies to Major Histocompatibility Complex (MHC)-E Protein</p>
+<p class="pres-authors">Laugi, H., Ghaffari, S., &amp; Weidanz, J.</p>
+<p class="pres-venue"><strong><a href="https://bpb-us-e1.wpmucdn.com/websites.uta.edu/dist/0/5087/files/2024/09/Abstract-Packet-THIA-2024.pdf" rel="noopener" target="_blank">Texas Health Informatics Alliance (THIA) Conference</a></strong> · Arlington, TX · September 2024</p>
+</div>
+</div>
+</section>
+<!-- ── Research Experience ───────────────────────── -->
+<section class="section" id="research">
+<h2 class="section-label">Research Experience</h2>
 
-    <!-- ── Research snapshot ─────────────────────── -->
-    <div class="metrics" aria-label="Research snapshot">
-      <div class="metric"><span class="metric-num">2+</span><span class="metric-label">Years of Research</span></div>
-      <div class="metric"><span class="metric-num">5</span><span class="metric-label">Research Experiences</span></div>
-      <div class="metric"><span class="metric-num">7</span><span class="metric-label">Presentations</span></div>
-      <div class="metric"><span class="metric-num">3</span><span class="metric-label">Scholarly Works</span></div>
-      <div class="metric"><span class="metric-num">3</span><span class="metric-label">Selected Awards</span></div>
-    </div>
-
-    <!-- ── News ──────────────────────────────────── -->
-    <section class="section" id="news">
-      <h2 class="section-label">News</h2>
-      <div class="news news-scroll" aria-label="Recent news; scroll for earlier items">
-        <div class="news-row">
-          <span class="news-date">Sep 2026</span>
-          <span class="news-text">Accepted for a <strong>poster presentation</strong> at the <a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" target="_blank" rel="noopener">UT Systemwide Brain Research Summit 2026</a>, to be held Nov. 5–6 in Austin, TX.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Aug 2026</span>
-          <span class="news-text">Accepted for a <strong>30-minute oral presentation</strong> at the <a href="https://icma2026.umd.edu/" target="_blank" rel="noopener">Tenth International Conference on Mathematical Modeling &amp; Analysis of Populations in Biological Systems (ICMA-X)</a>, to be held Oct. 24–25 at the University of Maryland, College Park.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Aug 2026</span>
-          <span class="news-text">Completed a Process Development internship at <a href="https://www.amgen.com/" target="_blank" rel="noopener"><strong>Amgen</strong></a> in Thousand Oaks, CA.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Apr 2026</span>
-          <span class="news-text">Presented Honors Thesis research at the <strong>UTA Honors Research Symposium</strong>.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Jan 2026</span>
-          <span class="news-text">Co-founded UTA's first <a href="https://www.embs.org/" target="_blank" rel="noopener"><strong>IEEE Engineering in Medicine and Biology Society</strong></a> student chapter.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Aug 2025</span>
-          <span class="news-text">Completed an Analytical Science internship at <a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener"><strong>Boehringer Ingelheim</strong></a> in Fremont, CA.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Apr 2025</span>
-          <span class="news-text">Won <strong>3rd place</strong> for a poster presentation at <a href="https://www.uta.edu/academics/schools-colleges/engineering/students/innovation-day" target="_blank" rel="noopener">UTA College of Engineering Innovation Day</a>.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Sep 2024</span>
-          <span class="news-text">Presented research on nanobody binding specificity to MHC-E at the <a href="https://cihi.uta.edu/texas-health-informatics-alliance/thia-2024/" target="_blank" rel="noopener"><strong>Texas Health Informatics Alliance (THIA) Conference</strong></a> in Arlington, TX.</span>
-        </div>
-        <div class="news-row">
-          <span class="news-date">Aug 2024</span>
-          <span class="news-text">Won <strong>2nd place</strong> at the <a href="https://www.uta.edu/news/news-releases/2024/09/11/health-informatics-training-takes-center-stage-at-uta" target="_blank" rel="noopener">TExBioMed 2024 research presentation competition</a>.</span>
-        </div>
-      </div>
-      <p class="news-hint">Scroll within this section for earlier updates.</p>
-    </section>
-
-    <!-- ── Publications ───────────────────────────── -->
-    <section class="section" id="publications">
-      <h2 class="section-label">Publications &amp; Manuscripts</h2>
-      <div class="pubs">
-        <div>
-          <span class="vbadge vb-purple">Honors Thesis · 2026</span>
-          <p class="pub-title">Interpretable Machine Learning of Plasma Proteomics Reveals Stage-Specific Signatures Across the Alzheimer's Disease Continuum</p>
-          <p class="pub-authors"><span class="pub-me">Laugi, H.</span>, Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
-          <p class="pub-venue">University of Texas at Arlington Honors College · April 2026</p>
-          <div class="pub-links">
-            <a class="pub-link" href="https://mavmatrix.uta.edu/honors_spring2026/14/" target="_blank" rel="noopener">Paper</a>
-          </div>
-        </div>
-
-        <div>
-          <span class="vbadge vb-grey">Manuscript in Preparation</span>
-          <p class="pub-title">DenseNext: A Densely Connected Neural Network Architecture with Average Pooling Transformation for Efficient Image Classification</p>
-          <p class="pub-venue">Independent machine-learning research · 2026</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-grey">Manuscript in Preparation</span>
-          <p class="pub-title">Transfer Learning for Alzheimer’s MRI Classification</p>
-          <p class="pub-venue">Independent research project · manuscript in preparation</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Presentations ──────────────────────────── -->
-    <section class="section" id="presentations">
-      <h2 class="section-label">Presentations</h2>
-      <div class="pres-list">
-        <div>
-          <span class="vbadge vb-blue">Poster · Upcoming</span>
-          <p class="pres-title">"From Plasma-Based Classification to Structural Neuroimaging Correlates Across the Alzheimer's Disease Continuum"</p>
-          <p class="pres-authors">Laugi, H., Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
-          <p class="pres-venue"><strong><a href="https://cms.utsystem.edu/offices/health-affairs/university-of-texas-systemwide-brain-research-summit-2026" target="_blank" rel="noopener">UT Systemwide Brain Research Summit 2026</a></strong> · Austin, TX · November 2026</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-warm">Oral · 30 min</span>
-          <p class="pres-title">"Evaluating Multidrug Treatment Strategies for Polymicrobial Coinfection in Cystic Fibrosis"</p>
-          <p class="pres-authors">Laugi, H., et al.</p>
-          <p class="pres-venue"><strong><a href="https://icma2026.umd.edu/" target="_blank" rel="noopener">Tenth International Conference on Mathematical Modeling &amp; Analysis of Populations in Biological Systems (ICMA-X)</a></strong> · University of Maryland, College Park · October 2026</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-green">Oral</span>
-          <p class="pres-title">"B2A PRO: Automation of the Scale-up Process for the Beacon2Ambr Clone Screening Workflow"</p>
-          <p class="pres-authors">Laugi, H., Zah, E., &amp; Venkatachalapathy, H.</p>
-          <p class="pres-venue"><strong>Summer Internship Presentation</strong> · <a href="https://www.amgen.com/" target="_blank" rel="noopener">Amgen</a> · Thousand Oaks, CA · August 2026</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-blue">Poster</span>
-          <p class="pres-title">"Interpretable Machine Learning of Plasma Proteomic Biomarkers for Multi-Stage Alzheimer's Disease Classification"</p>
-          <p class="pres-authors">Laugi, H., Hosseinzadehketilateh, M., &amp; Zhu, X.</p>
-          <p class="pres-venue"><strong>UTA Honors Research Symposium</strong> · University of Texas at Arlington · April 2026</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-green">Poster &amp; Oral</span>
-          <p class="pres-title">"Establishing Imaged Capillary Isoelectric Focusing (icIEF) Fractionation on MauriceFlex for High-Throughput Analytical Characterization of Protein Charge Variants"</p>
-          <p class="pres-authors">Laugi, H., &amp; Mehra, R.</p>
-          <p class="pres-venue"><strong>Summer Internship Presentation</strong> · <a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener">Boehringer Ingelheim</a> · Fremont, CA · August 2025</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-blue">Poster · 3rd Place</span>
-          <p class="pres-title"><a href="https://www.uta.edu/academics/schools-colleges/engineering/students/innovation-day" target="_blank" rel="noopener">"Engineering a Yeast Surface Display Platform for Peptide/MHC Expression and Rapid Characterization of T Cell Receptor Mimic Antibodies"</a></p>
-          <p class="pres-authors">Laugi, H., Ghaffari, S., &amp; Weidanz, J.</p>
-          <p class="pres-venue"><strong>UTA College of Engineering Innovation Day</strong> · April 2025</p>
-        </div>
-
-        <div>
-          <span class="vbadge vb-purple">Poster</span>
-          <p class="pres-title"><a href="https://bpb-us-e1.wpmucdn.com/websites.uta.edu/dist/0/5087/files/2024/09/Abstract-Packet-THIA-2024.pdf" target="_blank" rel="noopener">"Assessing the Binding Specificity of Nanobodies to Major Histocompatibility Complex (MHC)-E Protein"</a></p>
-          <p class="pres-authors">Laugi, H., Ghaffari, S., &amp; Weidanz, J.</p>
-          <p class="pres-venue"><strong><a href="https://cihi.uta.edu/texas-health-informatics-alliance/thia-2024/" target="_blank" rel="noopener">Texas Health Informatics Alliance (THIA) Conference</a></strong> · Arlington, TX · September 2024</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Research Experience ───────────────────────── -->
-    <section class="section" id="research">
-      <h2 class="section-label">Research Experience</h2>
-      <p class="journey-intro">My research spans computational and experimental biology, with each experience adding a different perspective on how biological questions can be studied—from machine learning and mechanistic modeling to automation, analytical measurement, and wet-lab experimentation.</p>
-
-      <div class="exp-list journey-exp-list">
-        <article class="journey-with-figure">
-          <div>
-            <div class="exp-header">
-              <span class="exp-role">Undergraduate Research Assistant</span>
-              <span class="exp-dates">Oct 2025 – Present</span>
-            </div>
-            <p class="exp-org"><span class="org"><a href="https://brainlab-uta.github.io/BRAIN-Lab/index.html" target="_blank" rel="noopener">BRAIN Lab @ UTA</a></span> · Advisor: Prof. Xi Zhu</p>
-            <p class="journey-copy">My current work combines interpretable machine learning, plasma proteomics, and structural MRI to study Alzheimer's disease across multiple clinical stages. This work has strengthened my interest in using computational methods to connect molecular and imaging data with biologically meaningful questions.</p>
-            <p class="research-note">Manuscript in preparation (first author).</p>
-          </div>
-          <div class="research-figure journey-figure expandable" role="button" tabindex="0" aria-label="Enlarge Alzheimer’s project schematic" data-expand-image>
-            <img src="assets/images/alzheimers-project-schematic.png" alt="Schematic of Alzheimer's plasma proteomics and neuroimaging project" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="research-placeholder" style="display:none;"><strong>Project schematic</strong><span>Upload as:<br>assets/images/alzheimers-project-schematic.png</span></div>
-          </div>
-        </article>
-
-        <article>
-          <div class="exp-header">
-            <span class="exp-role">Undergraduate Researcher</span>
-            <span class="exp-dates">Sep 2025 – Present</span>
-          </div>
-          <p class="exp-org"><span class="org"><a href="https://nsf-rtg.uta.edu/" target="_blank" rel="noopener">NSF Research Training Group in Mathematics for Human Health</a></span> · University of Texas at Arlington</p>
-          <p class="journey-copy">Co-developing mechanistic ODE models of multidrug antibiotic resistance in <em>S. aureus</em> and <em>P. aeruginosa</em>, with parameter estimation from experimental data. This experience introduced me to mathematical modeling as another way to investigate biological systems and treatment dynamics.</p>
-        </article>
-
-        <article>
-          <div class="exp-header">
-            <span class="exp-role">Process Development Intern</span>
-            <span class="exp-dates">May – Aug 2026</span>
-          </div>
-          <p class="exp-org"><span class="org"><a href="https://www.amgen.com/" target="_blank" rel="noopener">Amgen</a></span> · Thousand Oaks, CA</p>
-          <p class="journey-copy">Developed and validated an automated cell-culture scale-up workflow for a clone-screening process. This experience showed me how engineering, automation, and quantitative validation can improve biological workflows at scale.</p>
-        </article>
-
-        <article>
-          <div class="exp-header">
-            <span class="exp-role">Analytical Science Intern</span>
-            <span class="exp-dates">May – Aug 2025</span>
-          </div>
-          <p class="exp-org"><span class="org"><a href="https://www.boehringer-ingelheim.com/" target="_blank" rel="noopener">Boehringer Ingelheim</a></span> · Fremont, CA</p>
-          <p class="journey-copy">Worked on analytical characterization of protein charge variants using MauriceFlex icIEF. Developing and optimizing the workflow sharpened my interest in quantitative measurement, reproducibility, and using data to improve experimental methods.</p>
-        </article>
-
-        <article>
-          <div class="exp-header">
-            <span class="exp-role">Undergraduate Research Assistant</span>
-            <span class="exp-dates">May 2024 – Apr 2025</span>
-          </div>
-          <p class="exp-org"><span class="org">Cancer Immunotherapy Lab</span> · University of Texas at Arlington</p>
-          <p class="journey-copy">Built my experimental foundation through protein expression, purification, and characterization studies alongside molecular, protein, and genetic experiments involving nanobodies, TCR-mimic antibodies, and yeast surface display. This work gave me first-hand experience translating biological questions into experiments and measurements.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <h2 class="section-label">Projects</h2>
-      <div class="proj-grid">
-        <article class="proj-card">
-          <img class="project-thumb" src="assets/images/facial-asymmetry.png" alt="3D facial asymmetry project visualization" onerror="this.style.display='none';">
-          <p class="proj-tag">Software, UI/UX &amp; Computer Vision Lead</p>
-          <h3>Handheld Facial Asymmetry Assessment Device</h3>
-          <p>Developing a 3D computer-vision pipeline using depth imaging, point clouds, and facial landmarks for objective and repeatable assessment of facial asymmetry.</p>
-          <p class="proj-dates">Aug 2026 – Present</p>
-        </article>
-
-        <article class="proj-card">
-          <img class="project-thumb" src="assets/images/densenext.png" alt="DenseNext architecture visualization" onerror="this.style.display='none';">
-          <p class="proj-tag">Independent Machine Learning Research</p>
-          <h3>DenseNext</h3>
-          <p>Exploring a parameter-efficient densely connected neural-network architecture using average-pooling transformations; initial experiments achieved DenseNet-comparable performance with ~30% fewer parameters.</p>
-          <p class="proj-dates">Manuscript in preparation</p>
-        </article>
-
-        <article class="proj-card">
-          <img class="project-thumb" src="assets/images/transfer-learning.png" alt="Transfer learning project visualization" onerror="this.style.display='none';">
-          <p class="proj-tag">Independent Research</p>
-          <h3>Transfer Learning for Alzheimer’s MRI Classification</h3>
-          <p>Ongoing independent work examining transfer-learning strategies and their performance across related learning tasks.</p>
-          <p class="proj-dates">Manuscript in preparation</p>
-        </article>
-
-        <article class="proj-card">
-          <img class="project-thumb" src="assets/images/cerebral-palsy-mri.png" alt="Diffusion MRI and tractography visualization from cerebral palsy project" onerror="this.style.display='none';">
-          <p class="proj-tag">Neuroimaging Research</p>
-          <h3>Cerebral Palsy Diffusion MRI &amp; Tractography</h3>
-          <p>Analyzed diffusion MRI data using DSI Studio tractography, focusing on fiber-tract reconstruction and structural connectivity in cerebral palsy, while gaining exposure to clinical neuroimaging data collection.</p>
-          <p class="proj-dates"><a href="https://www.cookchildrens.org/services/neurosciences-research/" target="_blank" rel="noopener">Cook Children's Neuroscience Research Center</a> · 2025</p>
-        </article>
-      </div>
-    </section>
-
-
-    <!-- ── Teaching & Mentorship ─────────────────────── -->
-    <section class="section" id="teaching">
-      <h2 class="section-label">Teaching &amp; Mentorship</h2>
-      <div class="teach-list">
-        <article class="teach-card">
-          <div class="teach-header">
-            <span class="teach-role"><a href="https://www.uta.edu/academics/schools-colleges/science/departments/physics/advising/physics-help-clinic" target="_blank" rel="noopener">Physics Tutor</a></span>
-            <span class="teach-dates">Sep – Dec 2025</span>
-          </div>
-          <p class="teach-org">Department of Physics · University of Texas at Arlington</p>
-          <p>Supported undergraduate students in calculus-based physics through individualized and group tutoring, with an emphasis on conceptual understanding, quantitative reasoning, and problem-solving strategies.</p>
-        </article>
-
-        <article class="teach-card">
-          <div class="teach-header">
-            <span class="teach-role">Course Grader · Differential Equations &amp; Linear Algebra</span>
-          </div>
-          <p class="teach-org">Department of Mathematics · University of Texas at Arlington</p>
-          <p>Graded weekly assignments for 50+ students and provided feedback on mathematical reasoning, accuracy, and problem-solving approaches in advanced undergraduate coursework.</p>
-        </article>
-
-        <article class="teach-card">
-          <div class="teach-header">
-            <span class="teach-role">Student Tutor &amp; Program Assistant</span>
-            <span class="teach-dates">Sep 2023 – May 2024</span>
-          </div>
-          <p class="teach-org"><a href="https://www.uta.edu/enrollment-management/trio/upward-bound-math-science" target="_blank" rel="noopener">UTA Upward Bound Math &amp; Science Center</a></p>
-          <p>Tutored first-generation high school students in mathematics, physics, chemistry, and biology across four Texas high schools while also supporting program outreach and student services.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ── Awards ──────────────────────────────────── -->
-    <section class="section" id="awards">
-      <h2 class="section-label">Selected Awards</h2>
-      <div class="awards">
-        <div class="award-row">
-          <span class="award-yr">Apr 2025</span>
-          <div><p class="award-name">Alfred R. &amp; Janet H. Potvin Outstanding Bioengineering Student Award</p><p class="award-org">UTA Bioengineering Department</p></div>
-          <span></span>
-        </div>
-        <div class="award-row">
-          <span class="award-yr">Apr 2025</span>
-          <div><p class="award-name">3rd Place — Poster Presentation</p><p class="award-org">UTA College of Engineering Innovation Day</p></div>
-          <span></span>
-        </div>
-        <div class="award-row">
-          <span class="award-yr">Aug 2024</span>
-          <div><p class="award-name">2nd Place — Research Presentation, TExBioMed 2024</p><p class="award-org">TExBioMed 2024 Competition</p></div>
-          <span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Leadership ───────────────────────────────── -->
-    <section class="section" id="leadership">
-      <h2 class="section-label">Leadership &amp; Community</h2>
-      <div class="lead-card lead-card-logo">
-        <div class="lead-copy">
-          <div class="lead-header">
-            <span class="lead-role">Co-Founder &amp; Vice-Chair</span>
-            <span class="lead-dates">Jan 2026 – Present</span>
-          </div>
-          <p class="lead-org"><a href="https://www.embs.org/" target="_blank" rel="noopener">IEEE Engineering in Medicine and Biology Society (EMBS)</a> — UTA Chapter</p>
-          <ul class="lead-bullets">
-            <li>Co-founded UTA's first IEEE EMBS student chapter and helped build an interdisciplinary executive board.</li>
-            <li>Organize research, technical, and professional-development activities and help connect students with faculty and biomedical opportunities.</li>
-          </ul>
-        </div>
-        <a class="embs-logo-link" href="https://www.embs.org/" target="_blank" rel="noopener" aria-label="IEEE Engineering in Medicine and Biology Society">
-          <img class="embs-logo" src="https://www.embs.org/wp-content/uploads/2024/06/ieee-embs-tag-tm-logo2x.png" alt="IEEE Engineering in Medicine and Biology Society logo" loading="lazy" onerror="this.closest('.embs-logo-link').style.display='none';">
-        </a>
-      </div>
-    </section>
-
-  </main>
+<div class="exp-list journey-exp-list">
+<article class="journey-with-figure">
+<div>
+<div class="exp-header">
+<span class="exp-role">Undergraduate Research Assistant</span>
+<span class="exp-dates">Oct 2025 – Present</span>
+</div>
+<p class="exp-org"><span class="org"><a href="https://brainlab-uta.github.io/BRAIN-Lab/index.html" rel="noopener" target="_blank">BRAIN Lab @ UTA</a></span> · Advisor: Prof. Xi Zhu</p>
+<p class="journey-copy">My current work combines interpretable machine learning, plasma proteomics, and structural MRI to study Alzheimer's disease across multiple clinical stages. This work has strengthened my interest in using computational methods to connect molecular and imaging data with biologically meaningful questions.</p>
+<p class="research-note research-note-strong">Manuscript in preparation (first author).</p>
+</div>
+<div aria-label="Enlarge Alzheimer’s project schematic" class="research-figure journey-figure expandable" data-expand-image="" role="button" tabindex="0">
+<img alt="Schematic of Alzheimer's plasma proteomics and neuroimaging project" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" src="assets/images/alzheimers-project-schematic.png"/>
+<div class="research-placeholder" style="display:none;"><strong>Project schematic</strong><span>Upload as:<br/>assets/images/alzheimers-project-schematic.png</span></div>
+<button aria-label="Maximize Alzheimer’s project schematic" class="image-maximize-btn" type="button">⛶  Maximize</button></div>
+</article>
+<article>
+<div class="exp-header">
+<span class="exp-role">Undergraduate Researcher</span>
+<span class="exp-dates">Sep 2025 – Present</span>
+</div>
+<p class="exp-org"><span class="org"><a href="https://nsf-rtg.uta.edu/" rel="noopener" target="_blank">NSF Research Training Group in Mathematics for Human Health</a></span> · University of Texas at Arlington</p>
+<p class="journey-copy">Co-developing mechanistic ODE models of multidrug antibiotic resistance in <em>S. aureus</em> and <em>P. aeruginosa</em>, with parameter estimation from experimental data. This experience introduced me to mathematical modeling as another way to investigate biological systems and treatment dynamics.</p>
+</article>
+<article>
+<div class="exp-header">
+<span class="exp-role">Process Development Intern</span>
+<span class="exp-dates">May – Aug 2026</span>
+</div>
+<p class="exp-org"><span class="org"><a href="https://www.amgen.com/" rel="noopener" target="_blank">Amgen</a></span> · Thousand Oaks, CA</p>
+<p class="journey-copy">Developed and validated an automated cell-culture scale-up workflow for a clone-screening process. This experience showed me how engineering, automation, and quantitative validation can improve biological workflows at scale.</p>
+</article>
+<article>
+<div class="exp-header">
+<span class="exp-role">Analytical Science Intern</span>
+<span class="exp-dates">May – Aug 2025</span>
+</div>
+<p class="exp-org"><span class="org"><a href="https://www.boehringer-ingelheim.com/" rel="noopener" target="_blank">Boehringer Ingelheim</a></span> · Fremont, CA</p>
+<p class="journey-copy">Worked on analytical characterization of protein charge variants using MauriceFlex icIEF. Developing and optimizing the workflow sharpened my interest in quantitative measurement, reproducibility, and using data to improve experimental methods.</p>
+</article>
+<article>
+<div class="exp-header">
+<span class="exp-role">Undergraduate Research Assistant</span>
+<span class="exp-dates">May 2024 – Apr 2025</span>
+</div>
+<p class="exp-org"><span class="org">Cancer Immunotherapy Lab</span> · University of Texas at Arlington</p>
+<p class="journey-copy">Built my experimental foundation through protein expression, purification, and characterization studies alongside molecular, protein, and genetic experiments involving nanobodies, TCR-mimic antibodies, and yeast surface display. This work gave me first-hand experience translating biological questions into experiments and measurements.</p>
+</article>
+</div>
+</section>
+<section class="section" id="projects">
+<h2 class="section-label">Projects</h2>
+<div class="proj-grid">
+<article class="proj-card">
+<img alt="3D facial asymmetry project visualization" class="project-thumb" onerror="this.style.display='none';" src="assets/images/facial-asymmetry.png"/>
+<p class="proj-tag">Software, UI/UX &amp; Computer Vision Lead</p>
+<h3>Handheld Facial Asymmetry Assessment Device</h3>
+<p>Developing a 3D computer-vision pipeline using depth imaging, point clouds, and facial landmarks for objective and repeatable assessment of facial asymmetry.</p>
+<p class="proj-dates">Aug 2026 – Present</p>
+</article>
+<article class="proj-card">
+<img alt="DenseNext architecture visualization" class="project-thumb" onerror="this.style.display='none';" src="assets/images/densenext.png"/>
+<p class="proj-tag">Independent Machine Learning Research</p>
+<h3>DenseNext</h3>
+<p>Exploring a parameter-efficient densely connected neural-network architecture using average-pooling transformations; initial experiments achieved DenseNet-comparable performance with ~30% fewer parameters.</p>
+<p class="proj-dates">Manuscript in preparation</p>
+</article>
+<article class="proj-card">
+<img alt="Transfer learning project visualization" class="project-thumb" onerror="this.style.display='none';" src="assets/images/transfer-learning.png"/>
+<p class="proj-tag">Independent Research</p>
+<h3>Transfer Learning for Alzheimer’s MRI Classification</h3>
+<p>Ongoing independent work examining transfer-learning strategies and their performance across related learning tasks.</p>
+<p class="proj-dates">Manuscript in preparation</p>
+</article>
+<article class="proj-card">
+<img alt="Diffusion MRI and tractography visualization from cerebral palsy project" class="project-thumb" onerror="this.style.display='none';" src="assets/images/cerebral-palsy-mri.png"/>
+<p class="proj-tag">Neuroimaging Research</p>
+<h3>Cerebral Palsy Diffusion MRI &amp; Tractography</h3>
+<p>Analyzed diffusion MRI data using DSI Studio tractography, focusing on fiber-tract reconstruction and structural connectivity in cerebral palsy, while gaining exposure to clinical neuroimaging data collection.</p>
+<p class="proj-dates"><a href="https://www.cookchildrens.org/services/neurosciences-research/" rel="noopener" target="_blank">Cook Children's Neuroscience Research Center</a> · 2025</p>
+</article>
+</div>
+</section>
+<!-- ── Teaching & Mentorship ─────────────────────── -->
+<section class="section" id="teaching">
+<h2 class="section-label">Teaching &amp; Mentorship</h2>
+<div class="teach-list">
+<article class="teach-card">
+<div class="teach-header">
+<span class="teach-role"><a href="https://www.uta.edu/academics/schools-colleges/science/departments/physics/advising/physics-help-clinic" rel="noopener" target="_blank">Physics Tutor</a></span>
+<span class="teach-dates">Sep – Dec 2025</span>
+</div>
+<p class="teach-org">Department of Physics · University of Texas at Arlington</p>
+<p>Supported undergraduate students in calculus-based physics through individualized and group tutoring, with an emphasis on conceptual understanding, quantitative reasoning, and problem-solving strategies.</p>
+</article>
+<article class="teach-card">
+<div class="teach-header">
+<span class="teach-role">Course Grader · Differential Equations &amp; Linear Algebra</span>
+</div>
+<p class="teach-org">Department of Mathematics · University of Texas at Arlington</p>
+<p>Graded weekly assignments for 50+ students and provided feedback on mathematical reasoning, accuracy, and problem-solving approaches in advanced undergraduate coursework.</p>
+</article>
+<article class="teach-card">
+<div class="teach-header">
+<span class="teach-role">Student Tutor &amp; Program Assistant</span>
+<span class="teach-dates">Sep 2023 – May 2024</span>
+</div>
+<p class="teach-org"><a href="https://www.uta.edu/enrollment-management/trio/upward-bound-math-science" rel="noopener" target="_blank">UTA Upward Bound Math &amp; Science Center</a></p>
+<p>Tutored first-generation high school students in mathematics, physics, chemistry, and biology across four Texas high schools while also supporting program outreach and student services.</p>
+</article>
+</div>
+</section>
+<!-- ── Awards ──────────────────────────────────── -->
+<section class="section" id="awards">
+<h2 class="section-label">Selected Awards</h2>
+<div class="award-grid"><article class="award-card"><div class="award-image-wrap"><img alt="Potvin Outstanding Bioengineering Student Award" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="assets/images/potvin-award.png"/><div class="award-image-fallback" style="display:none;">Add image: potvin-award.png</div></div><div class="award-card-copy"><p class="award-card-date">Apr 2025</p><p class="award-name">Alfred R. &amp; Janet H. Potvin Outstanding Bioengineering Student Award</p><p class="award-org">UTA Bioengineering Department</p></div></article><article class="award-card"><div class="award-image-wrap"><img alt="UTA Innovation Day award" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="assets/images/innovation-day-award.png"/><div class="award-image-fallback" style="display:none;">Add image: innovation-day-award.png</div></div><div class="award-card-copy"><p class="award-card-date">Apr 2025</p><p class="award-name">3rd Place — Poster Presentation</p><p class="award-org">UTA College of Engineering Innovation Day</p></div></article><article class="award-card"><div class="award-image-wrap"><img alt="TExBioMed research presentation award" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" src="assets/images/texbiomed-award.png"/><div class="award-image-fallback" style="display:none;">Add image: texbiomed-award.png</div></div><div class="award-card-copy"><p class="award-card-date">Aug 2024</p><p class="award-name">2nd Place — Research Presentation, TExBioMed 2024</p><p class="award-org">TExBioMed 2024 Competition</p></div></article></div>
+</section>
+<!-- ── Leadership ───────────────────────────────── -->
+<section class="section" id="leadership">
+<h2 class="section-label">Leadership &amp; Community</h2>
+<div class="lead-card lead-card-logo">
+<div class="lead-copy">
+<div class="lead-header">
+<span class="lead-role">Co-Founder &amp; Vice-Chair</span>
+<span class="lead-dates">Jan 2026 – Present</span>
+</div>
+<p class="lead-org"><a href="https://www.embs.org/" rel="noopener" target="_blank">IEEE Engineering in Medicine and Biology Society (EMBS)</a> — UTA Chapter</p>
+<ul class="lead-bullets">
+<li>Co-founded UTA's first IEEE EMBS student chapter and helped build an interdisciplinary executive board.</li>
+<li>Organize research, technical, and professional-development activities and help connect students with faculty and biomedical opportunities.</li>
+</ul>
+</div>
+<a aria-label="IEEE Engineering in Medicine and Biology Society" class="embs-logo-link" href="https://www.embs.org/" rel="noopener" target="_blank">
+<img alt="IEEE Engineering in Medicine and Biology Society logo" class="embs-logo" loading="lazy" onerror="this.closest('.embs-logo-link').style.display='none';" src="https://www.embs.org/wp-content/uploads/2024/06/ieee-embs-tag-tm-logo2x.png"/>
+</a>
+</div>
+</section>
+</main>
 </div><!-- end .layout -->
-
 <!-- ── PDF / Slides modal ──────────────────────── -->
 <script>
   const overlay    = document.getElementById('pdfModal');
@@ -1433,6 +1491,5 @@
   });
 
 </script>
-
 </body>
 </html>
